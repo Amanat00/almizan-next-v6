@@ -1,4 +1,97 @@
 import { notFound } from 'next/navigation';
+
 import { LegalPage } from '@/components/LegalPage';
+
 import { business, isLang, type Lang } from '@/lib/content';
-export default async function Page({params}:{params:Promise<{lang:string}>}){const{lang:raw}=await params;if(!isLang(raw))notFound();const lang=raw as Lang;const data=lang==='ar'?{title:'سياسة الخصوصية',intro:'توضح هذه الصفحة كيفية التعامل مع المعلومات التي ترسلها عبر الموقع.',sections:[['المعلومات التي ترسلها','قد ترسل اسمك ورقم هاتفك وتفاصيل معاملتك عند التواصل معنا. استخدم واتساب أو البريد الإلكتروني فقط بالمعلومات اللازمة لخدمتك.'],['الخدمات الخارجية','قد يستخدم الموقع روابط إلى واتساب وخرائط جوجل وخدمات خارجية أخرى، وتخضع هذه الخدمات لسياسات الخصوصية الخاصة بها.'],['التواصل','لأي استفسار حول الخصوصية تواصل معنا على '+business.email+'.']]}:lang==='ur'?{title:'پرائیویسی پالیسی',intro:'یہ صفحہ بتاتا ہے کہ ویب سائٹ کے ذریعے بھیجی گئی معلومات کو کیسے ہینڈل کیا جاتا ہے۔',sections:[['آپ کی بھیجی گئی معلومات','رابطہ کرتے وقت آپ نام، فون نمبر اور اپنی درخواست کی تفصیل بھیج سکتے ہیں۔ صرف وہی معلومات شیئر کریں جو آپ کی سروس کے لیے ضروری ہوں۔'],['بیرونی خدمات','ویب سائٹ واٹس ایپ، گوگل میپس اور دوسری بیرونی خدمات کے لنکس استعمال کر سکتی ہے، جن پر ان کی اپنی پرائیویسی پالیسیاں لاگو ہوتی ہیں۔'],['رابطہ','پرائیویسی سے متعلق سوال کے لیے '+business.email+' پر رابطہ کریں۔']]}:{title:'Privacy Policy',intro:'This page explains how information you send through the website is handled.',sections:[['Information you provide','When you contact us, you may provide your name, phone number and details about a transaction. Please share only the information needed for us to understand your enquiry.'],['Third-party services','The site links to WhatsApp, Google Maps and other external services. Those services are governed by their own privacy policies and terms.'],['Contact','For privacy questions, contact us at '+business.email+'.']]};return <LegalPage lang={lang} {...data}/>}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ lang: string }>;
+}) {
+  const { lang: raw } = await params;
+
+  if (!isLang(raw)) {
+    notFound();
+  }
+
+  const lang = raw as Lang;
+
+  const data =
+    lang === 'ar'
+      ? {
+          title: 'سياسة الخصوصية',
+          intro:
+            'توضح هذه الصفحة كيفية التعامل مع المعلومات التي ترسلها عبر الموقع.',
+          sections: [
+            {
+              heading: 'المعلومات التي ترسلها',
+              body:
+                'قد ترسل اسمك ورقم هاتفك وتفاصيل معاملتك عند التواصل معنا. استخدم واتساب أو البريد الإلكتروني فقط بالمعلومات اللازمة لخدمتك.',
+            },
+            {
+              heading: 'الخدمات الخارجية',
+              body:
+                'قد يستخدم الموقع روابط إلى واتساب وخرائط جوجل وخدمات خارجية أخرى، وتخضع هذه الخدمات لسياسات الخصوصية الخاصة بها.',
+            },
+            {
+              heading: 'التواصل',
+              body:
+                'لأي استفسار حول الخصوصية تواصل معنا على ' +
+                business.email +
+                '.',
+            },
+          ],
+        }
+      : lang === 'ur'
+        ? {
+            title: 'پرائیویسی پالیسی',
+            intro:
+              'یہ صفحہ بتاتا ہے کہ ویب سائٹ کے ذریعے بھیجی گئی معلومات کو کیسے ہینڈل کیا جاتا ہے۔',
+            sections: [
+              {
+                heading: 'آپ کی بھیجی گئی معلومات',
+                body:
+                  'رابطہ کرتے وقت آپ نام، فون نمبر اور اپنی درخواست کی تفصیل بھیج سکتے ہیں۔ صرف وہی معلومات شیئر کریں جو آپ کی سروس کے لیے ضروری ہوں۔',
+              },
+              {
+                heading: 'بیرونی خدمات',
+                body:
+                  'ویب سائٹ واٹس ایپ، گوگل میپس اور دوسری بیرونی خدمات کے لنکس استعمال کر سکتی ہے، جن پر ان کی اپنی پرائیویسی پالیسیاں لاگو ہوتی ہیں۔',
+              },
+              {
+                heading: 'رابطہ',
+                body:
+                  'پرائیویسی سے متعلق سوال کے لیے ' +
+                  business.email +
+                  ' پر رابطہ کریں۔',
+              },
+            ],
+          }
+        : {
+            title: 'Privacy Policy',
+            intro:
+              'This page explains how information you send through the website is handled.',
+            sections: [
+              {
+                heading: 'Information you provide',
+                body:
+                  'When you contact us, you may provide your name, phone number and details about a transaction. Please share only the information needed for us to understand your enquiry.',
+              },
+              {
+                heading: 'Third-party services',
+                body:
+                  'The site links to WhatsApp, Google Maps and other external services. Those services are governed by their own privacy policies and terms.',
+              },
+              {
+                heading: 'Contact',
+                body:
+                  'For privacy questions, contact us at ' +
+                  business.email +
+                  '.',
+              },
+            ],
+          };
+
+  return <LegalPage lang={lang} {...data} />;
+}
