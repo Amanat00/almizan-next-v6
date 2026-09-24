@@ -1,0 +1,2 @@
+import Link from 'next/link';
+export default function NotFound(){return <main style={{minHeight:'100vh',display:'grid',placeItems:'center',padding:'24px'}}><div style={{textAlign:'center',maxWidth:'560px'}}><div style={{fontSize:'64px',fontWeight:800}}>404</div><h1>Page not found</h1><p>The page you requested is unavailable.</p><Link href="/en/" style={{display:'inline-block',marginTop:'14px',padding:'12px 20px',borderRadius:'999px',background:'#0f7a47',color:'white',fontWeight:800}}>Back to Al Mizan</Link></div></main>}

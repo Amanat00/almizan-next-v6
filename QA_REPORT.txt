@@ -1,0 +1,41 @@
+AL MIZAN NEXT.JS v6 — QA REPORT
+================================
+
+SOURCE / STRUCTURE
+- 35 TypeScript / TSX source files parsed with TypeScript 5.8.3.
+- Syntax error files: 0.
+- CSS opening/closing brace count: matched (1003 / 1003 at QA run).
+- package.json JSON parse: PASS.
+
+CONTENT / ROUTES
+- Languages: English, Arabic, Urdu.
+- Service categories: 9.
+- Individual services: 52.
+- Contact form includes: name, phone, email, service selection, message.
+
+IMAGES
+- Final local WebP assets: 379.
+- Exact SHA-256 duplicate files: 0.
+- Dynamic service image variants checked: hero, CTA, related, sidebar, card, thumb.
+- Dynamic category image variants checked: home, directory, hero, aside, band.
+- Missing referenced local images: 0.
+- Source stock/office folders removed from public production assets after derivatives were created.
+
+PERFORMANCE CHANGES
+- Next Image runtime optimizer disabled for these pre-compressed local WebPs to avoid first-request conversion latency.
+- Immutable one-year cache headers configured for /images and /_next/static.
+- Next/font used for Space Grotesk + DM Sans; Arabic/Urdu font preloading disabled.
+- Turbopack enabled for `npm run dev`.
+- `.next` is not wiped on every normal dev start.
+- Below-the-fold sections use content-visibility.
+- Only hero/critical images use priority; supporting Next Image instances remain lazy by default.
+
+ENTRANCE
+- Homepage-only intro component.
+- Runs on homepage entry / refresh.
+- Duration: 5200ms.
+- Page content loads underneath the entrance overlay.
+
+LIMITATION OF THIS QA ENVIRONMENT
+- npm registry access timed out in the sandbox, so `npm install` / full `next build` could not be completed here.
+- Source syntax, JSON, CSS structure, route-data counts and local image-reference checks passed.
