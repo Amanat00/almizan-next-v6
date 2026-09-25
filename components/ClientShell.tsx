@@ -14,10 +14,12 @@ export function ClientShell({ lang, children }: { lang: Lang; children: React.Re
     root.dir = direction(lang);
     root.dataset.lang = lang;
     let saved: string | null = null;
-    try { saved = window.localStorage.getItem('almizan-theme'); } catch {}
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = saved === 'dark' || saved === 'light' ? saved : prefersDark ? 'dark' : 'light';
-    root.dataset.theme = theme;
+
+try {
+  saved = window.localStorage.getItem('almizan-theme');
+} catch {}
+
+root.dataset.theme = saved === 'dark' ? 'dark' : 'light';
   }, [lang]);
 
   useEffect(() => {

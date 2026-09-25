@@ -1,5 +1,11 @@
 import type { Metadata } from 'next';
-import { DM_Sans, Noto_Naskh_Arabic, Noto_Nastaliq_Urdu, Space_Grotesk } from 'next/font/google';
+import {
+  DM_Sans,
+  Noto_Naskh_Arabic,
+  Noto_Nastaliq_Urdu,
+  Space_Grotesk,
+} from 'next/font/google';
+
 import './globals.css';
 
 const dmSans = DM_Sans({
@@ -35,13 +41,40 @@ const notoNastaliq = Noto_Nastaliq_Urdu({
 });
 
 export const metadata: Metadata = {
-  title: { default: 'Al Mizan Typing & Documents Clearing | Ras Al Khaimah', template: '%s | Al Mizan RAK' },
-  description: 'Typing, document clearing, visa, Emirates ID, MOHRE, business setup and government-service assistance in Ras Al Khaimah, UAE.',
+  title: {
+    default: 'Al Mizan Typing & Documents Clearing | Ras Al Khaimah',
+    template: '%s | Al Mizan RAK',
+  },
+  description:
+    'Typing, document clearing, visa, Emirates ID, MOHRE, business setup and government-service assistance in Ras Al Khaimah, UAE.',
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const fontClasses = `${dmSans.variable} ${spaceGrotesk.variable} ${notoNaskh.variable} ${notoNastaliq.variable}`;
-  return <html lang="en" className={fontClasses} suppressHydrationWarning><head>
-    <script dangerouslySetInnerHTML={{__html: `try{const s=localStorage.getItem('almizan-theme');const d=s==='dark'||(s!=='light'&&matchMedia('(prefers-color-scheme: dark)').matches);document.documentElement.dataset.theme=d?'dark':'light'}catch(e){}`}} />
-  </head><body>{children}</body></html>;
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const fontClasses =
+    `${dmSans.variable} ${spaceGrotesk.variable} ${notoNaskh.variable} ${notoNastaliq.variable}`;
+
+  return (
+    <html
+      lang="en"
+      className={fontClasses}
+      suppressHydrationWarning
+    >
+      <head><script
+        dangerouslySetInnerHTML={{
+          __html: `try {
+            const saved = localStorage.getItem('almizan-theme');
+            document.documentElement.dataset.theme =
+              saved === 'dark' ? 'dark' : 'light';
+          } catch (e) {
+            document.documentElement.dataset.theme = 'light';
+          }`,
+        }}
+      /></head>
+      <body>{children}</body>
+    </html>
+  );
 }
